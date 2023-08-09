@@ -26,12 +26,12 @@ using System.Collections.Generic;
                     //Dividing each number in the list by the input
                     else
                     {
-                        foreach (int numb in intList)
+                        foreach (int num in intList)
                         {
                             float Divide = num / numDivide;
                             Console.WriteLine(numDivide + "/" + numDivide + " = " + Divide);
                         }
-                        numValide = true;
+                        numValid = true;
                     }
                 }
 
@@ -43,5 +43,6 @@ using System.Collections.Generic;
             }
             //Message to let the user know the program has exited the try/catch block
             Console.WriteLine("The program has exited the try/catch block");
+            Console.ReadLine();
          }
     }
