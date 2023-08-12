@@ -13,7 +13,7 @@ namespace OperatorAssignment1
             Employee employee1 = new Employee();
             Employee employee2 = new Employee();
 
-            employee1.Id = 001;
+            employee1.Id = 002;
             employee1.FirstName = "Jesse";
             employee1.LastName = "Smith";
             employee2.Id = 002;
@@ -23,7 +23,7 @@ namespace OperatorAssignment1
             {
                 Console.WriteLine("There are two employees which has same Id.");
             }
-            if (employee1 != employee2)
+            else 
             {
                 Console.WriteLine("Two employees have different Id.");
             }

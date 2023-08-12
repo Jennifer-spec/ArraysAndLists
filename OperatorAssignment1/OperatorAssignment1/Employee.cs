@@ -18,13 +18,20 @@ namespace OperatorAssignment1
             {
                 return true;//something is wrong;
             }
-
+            else
+            {
+                return false; // it is right.
+            }
         }
         public static bool operator !=(Employee em1, Employee em2)
         {
             if (em1.Id != em2.Id)
             {
-                return true; // it is right.
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
