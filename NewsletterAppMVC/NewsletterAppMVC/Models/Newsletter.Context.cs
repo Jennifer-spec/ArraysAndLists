@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NewsletterAppMVC
+namespace NewsletterAppMVC.Models
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class newsletterEntities1 : DbContext
+    public partial class NewsletterEntities : DbContext
     {
-        public newsletterEntities1()
-            : base("name=newsletterEntities1")
+        public NewsletterEntities()
+            : base("name=NewsletterEntities")
         {
         }
     
@@ -25,5 +25,6 @@ namespace NewsletterAppMVC
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<SignUp> SignUps { get; set; }
     }
 }
