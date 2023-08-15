@@ -46,10 +46,73 @@ namespace CarInsurance.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        
+        
         public ActionResult Create([Bind(Include = "Id,FirstName,LastName,EmailAddress,DateOfBirth,CarYear,CarMake,CarModel,DUI,SpeedingTickets,CoverageType,Quote")] Insuree insuree)
         {
+           
             if (ModelState.IsValid)
             {
+                //modified here by Jennifer
+                float BaseQuote = 50;
+                float AddforAge;
+                float AddforCaryear;
+                float AddforMaker;
+                float AddforTicket = 0;
+                
+                DateTime now = DateTime.Now;
+                int age = now.Year - insuree.DateOfBirth.Year;
+                if (age <= 18)
+                {
+                    AddforAge = 100;
+                }
+                else if (age >= 19 && age <= 25)
+                {
+                    AddforAge = 50;
+                }
+                else
+                {
+                    AddforAge = 25;
+                }
+                if (insuree.CarYear < 2015)
+                {
+                    AddforCaryear = 50;
+                }
+                else if (insuree.CarYear >= 2015 && insuree.CarYear <= 2000)
+                {
+                    AddforCaryear = 25;
+                }
+                else
+                {
+                    AddforCaryear = 0;
+                }
+                if (insuree.CarMake == "Porsche")
+                {
+                    if (insuree.CarModel == "911 Carrere")
+                    {
+                        AddforMaker = 50;
+                    }
+                    else { AddforMaker = 25; }
+                }
+                else
+                {
+                    AddforMaker = 0;
+                }
+                if (insuree.SpeedingTickets >= 0)
+                {
+                    AddforTicket = AddforTicket * insuree.SpeedingTickets ;
+                }
+                float TotalQuote = BaseQuote + AddforAge + AddforCaryear + AddforMaker + AddforTicket;
+                if (insuree.DUI)
+                {
+                    TotalQuote = Convert.ToSingle(1.25 * TotalQuote);
+                }
+                if (insuree.CoverageType)
+                {
+                    TotalQuote = Convert.ToSingle(1.5 * TotalQuote);
+                }
+                insuree.Quote = (decimal)TotalQuote;
+                //end modification by jennifer
                 db.Insurees.Add(insuree);
                 db.SaveChanges();
                 return RedirectToAction("Index");
