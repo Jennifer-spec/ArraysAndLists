@@ -13,6 +13,14 @@ namespace CarInsurance.Controllers
     public class InsureeController : Controller
     {
         private InsuranceEntities db = new InsuranceEntities();
+        //modified by jennifer
+        // GET: Insuree
+        public ActionResult Admin()
+        {
+            return View(db.Insurees.ToList());
+            //return View();
+        }
+        //end of by jennifer
 
         // GET: Insuree
         public ActionResult Index()
